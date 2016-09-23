@@ -1,0 +1,24 @@
+th, td {
+	text-align: left !important;
+}
+
+.event-table {
+	margin-top: 40px;
+}
+
+.event-create {
+	text-align: center;
+}
+
+img.event-img {
+	width: 500px;
+}
+
+.card-block {
+	margin: 20px 0 !important;
+}
+
+.event-panel {
+	margin-top: 100px;
+}
+

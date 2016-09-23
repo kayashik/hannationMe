@@ -1,0 +1,2 @@
+1) Dropdown on the main page doesn't work
+2) Method destroy doesn't work

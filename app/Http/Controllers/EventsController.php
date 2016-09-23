@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Event;
+use Illuminate\Support\Facades\Session;
 
 class EventsController extends Controller
 {
@@ -22,7 +23,8 @@ class EventsController extends Controller
      */
     public function index()
     {
-        return view('events.index');
+        $events = Event::orderBy('id', 'desc')->paginate(10); 
+        return view('events.index', ['events' => $events]);
     }
 
     /**
@@ -60,8 +62,10 @@ class EventsController extends Controller
 
         $event->save();
 
+        Session::flash('success', 'Your Event was created succesfully!');
+
         //redirect to another page
-        return redirect()->route('events.index');
+        return redirect()->route('events.show', $event->id);
 
     }
 
@@ -73,7 +77,9 @@ class EventsController extends Controller
      */
     public function show($id)
     {
-        //
+        $event = Event::find($id);
+
+        return view('events.single', ['event'=> $event]);
     }
 
     /**
@@ -107,6 +113,12 @@ class EventsController extends Controller
      */
     public function destroy($id)
     {
-        //
+       $event = Event::find($id);
+
+       $event->delete();
+
+       Session::flash('success', 'Your Event was deleted succesfully!');
+
+       return redirect()->route('events.index');
     }
 }

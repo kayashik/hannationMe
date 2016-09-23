@@ -7,7 +7,7 @@
 
        <div class="row">
 		<div class="col-md-8 col-md-offset-2">
-			<h1>Create New Event</h1>
+			<h1 class="event-create">Create New Event</h1>
 			<hr>
 
 			 <form class="form-horizontal" role="form" method="POST" action="{{ route('events.store') }}">
@@ -73,9 +73,14 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-success btn-lg btn-block">
-                                    Create
-                                </button>
+                                <div class="col-md-6">
+                                    <button type="submit" class="btn btn-success btn-lg btn-block my-btn">
+                                        Create
+                                    </button>
+                                </div>
+                                <div class="col-md-6">
+                                    <a href="{{ route('events.index') }}" class="btn btn-default btn-lg btn-block">Cancel</a>
+                                </div>
                             </div>
                         </div>
                     </form>
