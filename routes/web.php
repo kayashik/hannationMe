@@ -11,6 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('main');
-});
+
+Auth::routes();
+
+Route::get('/', 'HomeController@index');
+
+Route::resource('events', 'EventsController');
