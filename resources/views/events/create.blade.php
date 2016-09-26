@@ -27,6 +27,34 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('slug') ? ' has-error' : '' }}">
+                            <label for="slug" class="col-md-4 control-label">Slug</label>
+
+                            <div class="col-md-6">
+                                <input id="slug" type="text" class="form-control" name="slug" value="{{ old('slug') }}" required autofocus>
+
+                                @if ($errors->has('slug'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('slug') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('imgURL') ? ' has-error' : '' }}">
+                            <label for="imgUR" class="col-md-4 control-label">Img URL</label>
+
+                            <div class="col-md-6">
+                                <input id="imgUR" type="text" class="form-control" name="imgUR" value="{{ old('imgUR') }}" required autofocus>
+
+                                @if ($errors->has('imgUR'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('imgUR') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
                             <label for="description" class="col-md-4 control-label">Describe your event</label>
 

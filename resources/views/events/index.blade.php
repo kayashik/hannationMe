@@ -37,6 +37,8 @@
 								<td>{{ substr($event->specialOffers, 0, 30) }}{{ strlen($event->specialOffers)>30 ? '...': '' }}</td>
 								<td>{{ date('jS  F  Y, G:i',strtotime($event->eventDateTime)) }}</td>
 								<td><a href="{{ route('events.show', $event->id)}}" class="btn btn-default btn-sm">View</a>
+									<a href="{{ route('events.edit', $event->id) }}" class="btn btn-default btn-sm">Edit</a></td>
+				                    </form>
 								</td>
 						</tr>
 						@endforeach

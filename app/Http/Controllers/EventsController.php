@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Session;
 class EventsController extends Controller
 {
 
-
     public function __construct()
     {
         $this->middleware('auth');
@@ -48,14 +47,18 @@ class EventsController extends Controller
         //validation
         $this->validate($request, [
                 'title' => 'required|max:20',
-                'description' => 'required|min:5|max:255',
-                'specialOffers' => 'required|min:5|max:255',
+                'slug' => 'required|alpha_dash|min:5|max:255|unique:events,slug',
+                'imgURL' => 'requred|max:20',
+                'description' => 'required|min:5|max:500',
+                'specialOffers' => 'required|min:5|max:500',
                 'eventDateTime' => 'required',
             ]);
 
         $event = new Event;
 
         $event->title = $request->title;
+        $event->slug = $request->slug;
+        $event->imgURL = $request->imgURL;
         $event->description = $request->description;
         $event->specialOffers = $request->specialOffers;
         $event->eventDateTime = $request->eventDateTime;
@@ -90,7 +93,9 @@ class EventsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $event = Event::find($id);
+
+        return view('events.edit', ['event'=> $event]);
     }
 
     /**
@@ -102,7 +107,42 @@ class EventsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         $event = Event::find($id);
+        //validation
+        if ($request->input('slug') == $event->slug){
+            $this->validate($request, [
+                'title' => 'required|max:20',
+                'imgURL' => 'requred|max:20',
+                'description' => 'required|min:5|max:500',
+                'specialOffers' => 'required|min:5|max:500',
+                'eventDateTime' => 'required',
+            ]);
+        } else {
+                $this->validate($request, [
+                'title' => 'required|max:20',
+                'slug' => 'required|alpha_dash|min:5|max:255|unique:events,slug',
+                'imgURL' => 'requred|max:20',
+                'description' => 'required|min:5|max:500',
+                'specialOffers' => 'required|min:5|max:500',
+                'eventDateTime' => 'required',
+            ]);
+            }
+
+        // save the data to the DB
+
+        $event->title = $request->title;
+        $event->slug = $request->slug;
+        $event->imgURL = $request->imgURL;
+        $event->description = $request->description;
+        $event->specialOffers = $request->specialOffers;
+        $event->eventDateTime = $request->eventDateTime;
+
+        $event->save();
+
+        Session::flash('success', 'Your Event was updated succesfully!');
+
+        //redirect to another page
+        return redirect()->route('events.show', $event->id);
     }
 
     /**

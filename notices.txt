@@ -1,2 +1,2 @@
-1) Dropdown on the main page doesn't work
-2) Method destroy doesn't work
+1) На странице "редактировать" не выводит старую информацию
+2) Вообще не работает update

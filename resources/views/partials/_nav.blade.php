@@ -51,7 +51,7 @@
                         </li>
                     @endif
                 </ul>
-                 <script src="/js/app.js"></script>
+                 
             </div>
         </div>
         

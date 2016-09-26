@@ -17,7 +17,7 @@
               </div>
 
               <div class="card-block">
-                <img src="{{ asset('img/party.jpg') }}" class="event-img">
+                <img src="{{ asset($event->imgURL) }}" class="event-img">
               </div>
 
               <div class="card-block">
@@ -41,12 +41,14 @@
                     {{ $event->title}}
                 </div>
                 <div class="panel-footer">
-                    <p><b>Cathegory</b> some-randome-cathegory</p>
-                    <p><b>Place</b> some-randome-place</p>
-                    <p><b>slug</b> some-randome-slug</p>
-                    <p><b>URL event</b> some-randome-url</p>
-                    <form action="{{ route('events.destroy', $event->id)}}" method="DELETE">
+                    <p><b>Created at</b> {{date("M j, Y h:ia", strtotime($event->created_at)) }}</p>
+                    <p><b>Updated at</b> {{ date("M j, Y h:ia", strtotime($event->updated_at)) }} </p>
+                    <p><b>slug</b> {{ $event->slug }}</p>
+                    <p><b>URL img</b> {{ $event->imgURL }}</p>
+                    <p><a href="{{ route('events.edit', $event->id) }}" class="btn btn-sm btn-block btn-default">Edit</a></p>
+                    <form action="{{ route('events.destroy', $event->id)}}" method="POST">
                       {{ csrf_field() }}
+                      {{ method_field('DELETE') }}
                         <button class="btn btn-sm btn-block btn-danger">Delete</button>
                     </form>
                 </div>
