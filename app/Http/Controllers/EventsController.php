@@ -48,7 +48,7 @@ class EventsController extends Controller
         $this->validate($request, [
                 'title' => 'required|max:20',
                 'slug' => 'required|alpha_dash|min:5|max:255|unique:events,slug',
-                'imgURL' => 'requred|max:20',
+                'imgURL' => 'required|max:20',
                 'description' => 'required|min:5|max:500',
                 'specialOffers' => 'required|min:5|max:500',
                 'eventDateTime' => 'required',
@@ -95,7 +95,7 @@ class EventsController extends Controller
     {
         $event = Event::find($id);
 
-        return view('events.edit', ['event'=> $event]);
+        return view('events.edit', compact('event'));
     }
 
     /**
@@ -112,7 +112,7 @@ class EventsController extends Controller
         if ($request->input('slug') == $event->slug){
             $this->validate($request, [
                 'title' => 'required|max:20',
-                'imgURL' => 'requred|max:20',
+                'imgURL' => 'required|max:20',
                 'description' => 'required|min:5|max:500',
                 'specialOffers' => 'required|min:5|max:500',
                 'eventDateTime' => 'required',
@@ -121,7 +121,7 @@ class EventsController extends Controller
                 $this->validate($request, [
                 'title' => 'required|max:20',
                 'slug' => 'required|alpha_dash|min:5|max:255|unique:events,slug',
-                'imgURL' => 'requred|max:20',
+                'imgURL' => 'required|max:20',
                 'description' => 'required|min:5|max:500',
                 'specialOffers' => 'required|min:5|max:500',
                 'eventDateTime' => 'required',
@@ -130,12 +130,12 @@ class EventsController extends Controller
 
         // save the data to the DB
 
-        $event->title = $request->title;
-        $event->slug = $request->slug;
-        $event->imgURL = $request->imgURL;
-        $event->description = $request->description;
-        $event->specialOffers = $request->specialOffers;
-        $event->eventDateTime = $request->eventDateTime;
+        $event->title = $request->input('title');
+        $event->slug = $request->input('slug');
+        $event->imgURL = $request->input('imgURL');
+        $event->description = $request->input('description');
+        $event->specialOffers = $request->input('specialOffers');
+        $event->eventDateTime = $request->input('eventDateTime');
 
         $event->save();
 
