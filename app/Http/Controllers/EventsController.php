@@ -124,7 +124,7 @@ class EventsController extends Controller
                 'imgURL' => 'required|max:20',
                 'description' => 'required|min:5|max:500',
                 'specialOffers' => 'required|min:5|max:500',
-                'eventDateTime' => 'required',
+               'eventDateTime' => 'required',
             ]);
             }
 

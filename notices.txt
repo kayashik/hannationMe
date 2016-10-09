@@ -1,2 +1,6 @@
-1) На странице "редактировать" не выводит старую информацию
-2) Вообще не работает update
+1) I had a mistake: TokenMismatchException in VerifyCsrfToken.php line 68!
+	Solution:
+   a.  Remove everything from framework/session folder
+   b. add <meta name="csrf-token" content="{{ csrf_token() }}"/> in a head (don't forget to use this small piece of shit '/>', it was the bigest hitch)
+
+  

@@ -52,7 +52,7 @@
             <div class="form-group">
                 {{ Form::label('eventDateTime', 'Date and Time:', ['class' => 'col-md-4 control-label'])}}
                 <div class="col-md-6">
-                    {{ Form::input('datetime-local', 'seventDateTime', null, ['class' => 'form-control']) }}
+                    {{ Form::input('datetime-local', 'eventDateTime', null, ['class' => 'form-control']) }}
                 </div>
             </div>
 

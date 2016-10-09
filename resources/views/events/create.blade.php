@@ -42,14 +42,14 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('imgURL') ? ' has-error' : '' }}">
-                            <label for="imgUR" class="col-md-4 control-label">Img URL</label>
+                            <label for="imgURL" class="col-md-4 control-label">Img URL</label>
 
                             <div class="col-md-6">
-                                <input id="imgUR" type="text" class="form-control" name="imgUR" value="{{ old('imgUR') }}" required autofocus>
+                                <input id="imgURL" type="text" class="form-control" name="imgURL" value="{{ old('imgURL') }}" required autofocus>
 
-                                @if ($errors->has('imgUR'))
+                                @if ($errors->has('imgURL'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('imgUR') }}</strong>
+                                        <strong>{{ $errors->first('imgURL') }}</strong>
                                     </span>
                                 @endif
                             </div>
