@@ -17,17 +17,13 @@ class CreatePlacesTable extends Migration
             $table->increments('id')->unique();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->string('imgURL')-> before('slug');
+            $table->string('imgURL');
             $table->string('address');
             $table->string('shortDescription');
             $table->text('description');
             $table->string('fitures');
             $table->time('open');
             $table->time('closed');
-            $table->float('averagePrice', 4, 2);
-            $table->string('cathegory');
-            $table->string('subCathegory');
-
             $table->timestamps();
         });
     }

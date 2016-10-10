@@ -13,10 +13,12 @@ class AddSlugAndImgUrlToEvents extends Migration
      */
     public function up()
     {
-        Schema::table('events', function ($table) {
-            $table->string('slug')->unique()->after('eventDateTime');
-            $table->string('imgURL')-> before('slug');
-        });
+        if (!Schema::hasColumn('slug', 'imgURL')) {
+            Schema::table('events', function ($table) {
+                $table->string('slug')->unique()->after('eventDateTime');
+                $table->string('imgURL')-> before('slug');
+            });
+        }
     }
 
     /**

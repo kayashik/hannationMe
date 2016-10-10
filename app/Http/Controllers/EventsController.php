@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Event;
 use Illuminate\Support\Facades\Session;
+use App\Http\Events\Events\EventFactory;
 
 class EventsController extends Controller
 {
@@ -23,7 +24,10 @@ class EventsController extends Controller
     public function index()
     {
         $events = Event::orderBy('id', 'desc')->paginate(10); 
-        return view('events.index', ['events' => $events]);
+       /* $myfirst = EventFactory::all();*/
+     
+        return view('events.index', ['events' => $events]); 
+   
     }
 
     /**
@@ -161,4 +165,5 @@ class EventsController extends Controller
 
        return redirect()->route('events.index');
     }
+
 }
