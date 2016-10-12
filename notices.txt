@@ -3,4 +3,10 @@
    a.  Remove everything from framework/session folder
    b. add <meta name="csrf-token" content="{{ csrf_token() }}"/> in a head (don't forget to use this small piece of shit '/>', it was the bigest hitch)
 
+2) Find the way to make a referende to the 'fabric' file and read about that!
+3) Read about API, patriculary about API in Laravel
+4) Add wifi-name and wifi-password fields to the place tables
+5) Add 'upload-file' field for food and drink menu to the places table
+6) Make all referenses according to the model
+7) Launch two last migrations
   
