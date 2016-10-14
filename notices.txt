@@ -8,5 +8,5 @@
 4) Add wifi-name and wifi-password fields to the place tables
 5) Add 'upload-file' field for food and drink menu to the places table
 6) Make all referenses according to the model
-7) Launch two last migrations
+7) Why categories.create and categories.show exist, if I added exeption
   

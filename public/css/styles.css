@@ -22,3 +22,22 @@ img.event-img {
 	margin-top: 100px;
 }
 
+.btn-mrg-top {
+	margin-top:10px;
+}
+
+.category_subtitle {
+	margin-top: 50px;
+	font-size: 50px;
+}
+.small-menu-btn {
+	display: inline-block;
+}
+
+.my-card {
+	height: 265px;
+    border: 1px solid #83a7dc;
+    border-radius: 20px;e;
+	border-radius: 5px;
+}
+

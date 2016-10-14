@@ -17,3 +17,7 @@ Auth::routes();
 Route::get('/', 'HomeController@index');
 
 Route::resource('events', 'EventsController');
+
+Route::resource('categories', 'CategoryController', ['exept' => ['create', 'show']]);
+
+Route::resource('subcategories', 'SubcategoryController');
