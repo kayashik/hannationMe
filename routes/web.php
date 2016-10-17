@@ -18,6 +18,8 @@ Route::get('/', 'HomeController@index');
 
 Route::resource('events', 'EventsController');
 
-Route::resource('categories', 'CategoryController', ['exept' => ['create', 'show']]);
+Route::resource('categories', 'CategoryController', ['except' => ['create', 'show']]);
 
-Route::resource('subcategories', 'SubcategoryController');
+Route::resource('subcategories', 'SubcategoryController', ['except' => ['create', 'show']]);
+
+Route::resource('places', 'PlacesController');

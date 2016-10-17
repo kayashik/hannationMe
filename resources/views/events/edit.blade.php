@@ -1,7 +1,7 @@
 
 @extends('main')
 
-@section('title', '| Single Event')
+@section('title', '| Edit Event')
 
 @section('content')
 

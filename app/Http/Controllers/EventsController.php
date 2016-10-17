@@ -53,8 +53,8 @@ class EventsController extends Controller
                 'title' => 'required|max:20',
                 'slug' => 'required|alpha_dash|min:5|max:255|unique:events,slug',
                 'imgURL' => 'required|max:20',
-                'description' => 'required|min:5|max:500',
-                'specialOffers' => 'required|min:5|max:500',
+                'description' => 'required|min:5|max:1000',
+                'specialOffers' => 'required|min:5|max:1000',
                 'eventDateTime' => 'required',
             ]);
 
@@ -117,8 +117,8 @@ class EventsController extends Controller
             $this->validate($request, [
                 'title' => 'required|max:20',
                 'imgURL' => 'required|max:20',
-                'description' => 'required|min:5|max:500',
-                'specialOffers' => 'required|min:5|max:500',
+                'description' => 'required|min:5|max:1000',
+                'specialOffers' => 'required|min:5|max:1000',
                 'eventDateTime' => 'required',
             ]);
         } else {
@@ -126,8 +126,8 @@ class EventsController extends Controller
                 'title' => 'required|max:20',
                 'slug' => 'required|alpha_dash|min:5|max:255|unique:events,slug',
                 'imgURL' => 'required|max:20',
-                'description' => 'required|min:5|max:500',
-                'specialOffers' => 'required|min:5|max:500',
+                'description' => 'required|min:5|max:1000',
+                'specialOffers' => 'required|min:5|max:1000',
                'eventDateTime' => 'required',
             ]);
             }

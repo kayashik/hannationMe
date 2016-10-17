@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Session;
 
 class SubcategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -27,16 +32,6 @@ class SubcategoryController extends Controller
         }
 
         return view('subcategory.index', ['subcategories' => $subcategories, 'categories' => $cats]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**

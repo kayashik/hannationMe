@@ -36,6 +36,7 @@
 
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ route('events.index') }}">Events</a></li>
+                                <li><a href="{{ route('places.index') }}">Places</a></li>
                                 <li><a href="{{ route('categories.index') }}">Categories</a></li>
                                 <li><a href="{{ route('subcategories.index') }}">Subcategories</a></li>
                                 <li>

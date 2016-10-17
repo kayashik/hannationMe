@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Subcategory;
+use App\Place;
+use Illuminate\Support\Facades\Session;
 
 class PlacesController extends Controller
 {
@@ -20,7 +23,9 @@ class PlacesController extends Controller
      */
     public function index()
     {
-        //
+        $places = Place::all();
+        
+        return view('places.index', ['places' => $places]);
     }
 
     /**
@@ -30,7 +35,13 @@ class PlacesController extends Controller
      */
     public function create()
     {
-        //
+        $subcategories = Subcategory::all();
+        $subs = array();
+        foreach ($subcategories as $subcategory) {
+            $subs [$subcategory->id] = $subcategory->name;
+        }
+
+        return view('places.create', ['subcategories' => $subs]);
     }
 
     /**
@@ -41,7 +52,40 @@ class PlacesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $this->validate($request, [
+            'name' => 'required|max:50',
+            'slug' => 'slug' => 'required|alpha_dash|min:5|max:255|unique:places,slug',
+            'imgURL' => 'required|max:20',
+            'videoURL' => 'required|max:20',
+            'type' => 'required|max:100',
+            'work_hours' => 'required',
+            'description' => 'required|min:5|max:1000',
+            'fitures' => 'required|min:5|max:1000',
+            'address' => 'required|min:5|max:500',
+        ]);
+
+        $place = new Place;
+
+        $place->name = $request->name;  
+        $place->slug = $request->slug;  
+        $place->imgURL = $request->imgURL;  
+        $place->videoURL = $request->videoURL;  
+        $place->type = $request->type;  
+        $place->work_hours = $request->work_hours;        
+        $place->description = $request->description;  
+        $place->fitures = $request->fitures;  
+        $place->address = $request->address; 
+
+        $place->subcategory()->associate($request->subcategory_id); 
+
+        $subcategory->save(); 
+
+        Session::flash('success', 'Place was created successfuly!');
+
+        //redirect to another page
+        return redirect()->route('places.index');
+
+
     }
 
     /**
