@@ -32,7 +32,10 @@ class CreateSubcategoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropForeign(['category_id']);
+        Schema::table('subcategories', function ($table) {
+         $table->dropForeign(['category_id']);
+       });
+
         Schema::dropIfExists('subcategories');
     }
 }

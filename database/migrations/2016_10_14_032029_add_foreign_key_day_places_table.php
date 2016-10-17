@@ -29,6 +29,13 @@ class AddForeignKeyDayPlacesTable extends Migration
      */
     public function down()
     {
-        Schema::dropForeign(['subcategory_id']);
+        Schema::table('day_places', function ($table) {
+         $table->dropForeign(['subcategory_id']);  
+        }); 
+
+        Schema::table('day_places', function ($table) {
+         $table->dropColumn(['subcategory_id']);
+        });
+  
     }
 }

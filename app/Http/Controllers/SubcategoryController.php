@@ -21,7 +21,12 @@ class SubcategoryController extends Controller
         $subcategories = Subcategory::all();
         $categories = Category::all();
 
-        return view('Subcategory.index', ['subcategories' => $subcategories, 'categories' => $categories,]);
+        $cats = array();
+        foreach ($categories as $category) {
+            $cats[$category->id] = $category->name;
+        }
+
+        return view('subcategory.index', ['subcategories' => $subcategories, 'categories' => $cats]);
     }
 
     /**
@@ -50,9 +55,9 @@ class SubcategoryController extends Controller
 
         $subcategory->name = $request->name;
 
-        $subcategory->save();
+        $subcategory->category()->associate($request->category_id); 
 
-        $subcategory->category()->sync($request->category_id, false);  
+        $subcategory->save();
 
         Session::flash('success', 'Subcategory was created successfuly!');
 
@@ -79,7 +84,17 @@ class SubcategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $subcategory_edit = Subcategory::find($id);
+        $subcategories = Subcategory::all();
+        $categories = Category::all();
+        $flag = 1;
+
+        $cats = array();
+        foreach ($categories as $category) {
+            $cats[$category->id] = $category->name;
+        }
+
+        return view('subcategory.index', ['subcategories' => $subcategories, 'subcategory_edit' => $subcategory_edit, 'categories' => $cats, 'flag' => $flag]);
     }
 
     /**
@@ -91,7 +106,22 @@ class SubcategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' =>'required|max:20',
+            ]);
+
+        $subcategory = Subcategory::find($id);
+
+        $subcategory->name = $request->input('name');
+
+        $subcategory->category()->associate($request->input('category_id')); 
+
+        $subcategory->save();
+
+        Session::flash('success', 'Subcategory was updated succesfully!');
+
+        //redirect to another page
+         return redirect()->route('subcategories.index');
     }
 
     /**
@@ -102,6 +132,12 @@ class SubcategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $subcategory = Subcategory::find($id);
+
+        $subcategory->delete();
+
+        Session::flash('success', 'Subcategory was deleted succesfully!');
+
+        return redirect()->route('subcategories.index');
     }
 }

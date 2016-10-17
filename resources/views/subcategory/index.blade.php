@@ -9,7 +9,36 @@
              <div class="title m-b-md">
                  Subcategories Main page
              </div>
-		
+
+              @if(isset($flag))
+				<div class="card my-card-subt">
+					<h1 class="category_subtitle">This Subategory!</h1>
+
+					{!! Form::model( $subcategory_edit, ['route' => ['subcategories.update', $subcategory_edit->id], 'class' => 'form-horizontal', 'method' => 'PATCH']) !!}
+
+					<div class="form-group">
+			            {{ Form::label('name', 'New Name:', ['class' => 'col-md-4 control-label'])}}
+			            <div class="col-md-6">
+			                {{ Form::text('name', null, ['class' => 'form-control']) }}
+			            </div>
+			        </div>
+					
+					<div class="form-group">
+				        {{ Form::label('category_id', 'Change Category:', ['class' => 'col-md-4 control-label'])}}
+				        <div class="col-md-6">
+							{{ Form::select('category_id', $categories, null, ['class' => 'form-control']) }}
+						</div>
+					</div>
+
+			        <div class="col-md-6 col-md-offset-4">
+				        {{Form::submit('Save Changes', ['class' => 'btn btn-lg btn-block btn-primary']) 	}} 
+				    </div>
+
+					{!! Form::close() !!}
+				</div>
+
+			@else
+
 	             {!! Form::open(['route' => 'subcategories.store', 'class' => 'form-horizontal', 'method'=> 'POST']) !!}
 
 	             <div class="form-group">
@@ -22,11 +51,7 @@
 				 <div class="form-group">
 	            	{{ Form::label('category_id', 'Category:', ['class' => 'col-md-4 control-label']) }}
 	            	<div class="col-md-6">
-						<select class="form-control" name="category_id">
-							@foreach($categories as $category)
-								<option value='{{ $category->id }}'>{{ $category->name }}</option>
-							@endforeach
-						</select>
+					{{ Form::select('category_id', $categories, null, ['class' => 'form-control']) }}
 					</div>
 				</div>
 
@@ -37,7 +62,8 @@
 	            	
 				{!! Form::close() !!}
 			
-
+			@endif
+			
 			<div class="clearfix"></div>
 
 		
@@ -59,10 +85,10 @@
 								<td>{{ $subcategory->id }}</td>
 								<td>{{ $subcategory->name }}</td>
 								<td>{{ $subcategory->category->name }}</td>
-								<td>{!! Form::open(['route' => ['categories.destroy', $subcategory->id], 'class' => 'small-menu-btn', 'method'=> 'DELETE']) !!}
+								<td>{!! Form::open(['route' => ['subcategories.destroy', $subcategory->id], 'class' => 'small-menu-btn', 'method'=> 'DELETE']) !!}
 										{{Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) }} 
 									{!! Form::close() !!}
-									{!! Form::open(['route' => ['categories.edit', $subcategory->id], 'class' => 'small-menu-btn', 'method'=> 'GET']) !!}
+									{!! Form::open(['route' => ['subcategories.edit', $subcategory->id], 'class' => 'small-menu-btn', 'method'=> 'GET']) !!}
 										{{Form::submit('Edit', ['class' => 'btn btn-default btn-sm']) }} 
 									{!! Form::close() !!}
 								</td>
