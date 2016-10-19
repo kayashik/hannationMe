@@ -50,7 +50,7 @@
                 <div class="form-group">
                     {{ Form::label('type', 'Type:', ['class' => 'col-md-4 control-label'])}}
                     <div class="col-md-6">
-                        {{ Form::text('type', null, ['class' => 'form-control'], 'placeholder' => 'What do you think your place is?']) }}
+                        {{ Form::text('type', null, ['class' => 'form-control', 'placeholder' => 'What do you think your place is?']) }}
                     </div>
                 </div>
 
@@ -58,6 +58,13 @@
                     {{ Form::label('fitures', 'Fitures:', ['class' => 'col-md-4 control-label'])}}
                     <div class="col-md-6">
                         {{ Form::textarea('fitures', null, ['class' => 'form-control', 'rows' => '5', 'placeholder' => 'Describe special fitufers of your own place']) }}
+                    </div>
+                </div>
+
+                 <div class="form-group">
+                    {{ Form::label('everage_price', 'Everage Price:', ['class' => 'col-md-4 control-label'])}}
+                    <div class="col-md-6">
+                        {{ Form::text('everage_price', null, ['class' => 'form-control']) }}
                     </div>
                 </div>
 
@@ -85,7 +92,7 @@
                     <div class="clearfix"></div>
                     <div class="col-md-6 col-md-offset-4">
                         <div class="col-md-6">
-                            {{Form::submit('Create New Category', ['class' => 'btn btn-lg btn-block btn-primary']) }} 
+                            {{Form::submit('Save', ['class' => 'btn btn-lg btn-block btn-primary']) }} 
                         </div>
                         <div class="col-md-6">
                             <a href="{{ route('places.index') }}" class="btn btn-default btn-lg btn-block">Cancel</a>

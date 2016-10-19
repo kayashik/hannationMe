@@ -54,13 +54,14 @@ class PlacesController extends Controller
     {
          $this->validate($request, [
             'name' => 'required|max:50',
-            'slug' => 'slug' => 'required|alpha_dash|min:5|max:255|unique:places,slug',
+            'slug' => 'required|alpha_dash|min:5|max:255|unique:places,slug',
             'imgURL' => 'required|max:20',
-            'videoURL' => 'required|max:20',
+            'videoURL' => 'max:20',
             'type' => 'required|max:100',
             'work_hours' => 'required',
             'description' => 'required|min:5|max:1000',
             'fitures' => 'required|min:5|max:1000',
+            'everage_price' => 'required|numeric',
             'address' => 'required|min:5|max:500',
         ]);
 
@@ -75,6 +76,7 @@ class PlacesController extends Controller
         $place->description = $request->description;  
         $place->fitures = $request->fitures;  
         $place->address = $request->address; 
+        $place->everage_price = $request->everage_price; 
 
         $place->subcategory()->associate($request->subcategory_id); 
 
