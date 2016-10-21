@@ -48,10 +48,11 @@ class SubcategoryController extends Controller
 
         $subcategory = new Subcategory;
 
+
         $subcategory->name = $request->name;
 
-        $subcategory->category()->associate($request->category_id); 
 
+        $subcategory->category()->associate($request->category_id); 
         $subcategory->save();
 
         Session::flash('success', 'Subcategory was created successfuly!');

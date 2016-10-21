@@ -37,8 +37,8 @@
 								<td>{{ $place->id }}</td>
 								<td>{{ $place->name }}</td>
 								<td>{{ $place->type }}</td>
-								<td>{{ substr($place->description, 0, 30) }}{{ strlen($place->description)>30 ? '...': '' }}</td>
-								<td>{{ substr($place->fitures, 0, 30) }}{{ strlen($place->fitures)>30 ? '...': '' }}</td>
+								<td>{{ substr($place->description, 0, 15) }}{{ strlen($place->description)>30 ? '...': '' }}</td>
+								<td>{{ substr($place->fitures, 0, 15) }}{{ strlen($place->fitures)>30 ? '...': '' }}</td>
 								<td>{{ substr($place->address, 0, 30) }}{{ strlen($place->fitures)>30 ? '...': '' }}</td>
 								<td><a href="{{ route('places.show', $place->id)}}" class="btn btn-default btn-sm">View</a>
 									<a href="{{ route('places.edit', $place->id) }}" class="btn btn-default btn-sm">Edit</a></td>

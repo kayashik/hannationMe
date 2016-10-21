@@ -41,6 +41,14 @@
                             </div>
                         </div>
 
+                        
+                            <div class="form-group">
+                                {{ Form::label('place_id', 'Place:', ['class' => 'col-md-4 control-label']) }}
+                                <div class="col-md-6">
+                                {{ Form::select('place_id', $places, null, ['class' => 'form-control']) }}
+                                </div>
+                            </div>
+
                         <div class="form-group{{ $errors->has('imgURL') ? ' has-error' : '' }}">
                             <label for="imgURL" class="col-md-4 control-label">Img URL</label>
 

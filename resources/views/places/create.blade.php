@@ -10,7 +10,7 @@
 			<h1 class="event-create">Create New Place</h1>
 			<hr>
 
-              {!! Form::open(['route' => 'subcategories.store', 'class' => 'form-horizontal', 'method'=> 'POST']) !!}
+              {!! Form::open(['route' => 'places.store', 'class' => 'form-horizontal', 'method'=> 'POST']) !!}
 
                  <div class="form-group">
                     {{ Form::label('name', 'Name:', ['class' => 'col-md-4 control-label'])}}
@@ -105,3 +105,4 @@
 	</div>
 
 @stop
+

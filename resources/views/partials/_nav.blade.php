@@ -11,16 +11,19 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                <a class="" href="{{ route('pages.home') }}">
+                    <img src="{{ asset('img/NN_circle.png') }}" class="nav_logo">
                 </a>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
-                    &nbsp;
+                 @if (!Auth::guest())
+                <ul class="nav navbar-nav nav-admin-hannation">
+                   <li><a href="{{ route('pages.index') }}">Places</a></li>
+                    <li><a href="#">Events</a></li>
                 </ul>
+                @endif
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
@@ -39,6 +42,7 @@
                                 <li><a href="{{ route('places.index') }}">Places</a></li>
                                 <li><a href="{{ route('categories.index') }}">Categories</a></li>
                                 <li><a href="{{ route('subcategories.index') }}">Subcategories</a></li>
+                                <hr>
                                 <li>
                                     <a href="{{ url('/logout') }}"
                                         onclick="event.preventDefault();

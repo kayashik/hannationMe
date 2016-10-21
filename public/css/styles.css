@@ -47,4 +47,15 @@ img.event-img {
     border-radius: 20px;e;
 	border-radius: 5px;
 }
+ hr.in_card {
 
+ 	    border-top: 1px solid #7d7474 !important;
+ }
+ img.nav_logo {
+  	margin-top: 5px;
+  	width: 40px;
+  	height: 40px;
+  }
+ul.nav-admin-hannation {
+	margin-left: 50px;
+}

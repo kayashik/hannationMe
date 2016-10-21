@@ -84,7 +84,7 @@
 						<tr>
 								<td>{{ $subcategory->id }}</td>
 								<td>{{ $subcategory->name }}</td>
-								<td>{{ $subcategory->category->name }}</td>
+								<td>@if(isset($subcategory->category->name )){{ $subcategory->category->name }} @else CATEGORY WAS DELETED @endif</td>
 								<td>{!! Form::open(['route' => ['subcategories.destroy', $subcategory->id], 'class' => 'small-menu-btn', 'method'=> 'DELETE']) !!}
 										{{Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) }} 
 									{!! Form::close() !!}

@@ -14,7 +14,8 @@
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index');
+Route::get('/', ['as' => 'pages.home', 'uses' => 'PageController@home']);
+Route::get('pages', ['as' => 'pages.index', 'uses' => 'PageController@index']);
 
 Route::resource('events', 'EventsController');
 

@@ -14,11 +14,11 @@ class AddForeignKeyNightPlacesTable extends Migration
     public function up()
     {
         Schema::table('night_places', function ($table) {
-            $table->integer('subcategory_id')->unsigned();
+            $table->integer('subcategory_id')->unsigned()->nullable();
         });
 
         Schema::table('night_places', function ($table) {
-            $table->foreign('subcategory_id')->references('id')->on('subcategories')->onDelete('cascade');
+            $table->foreign('subcategory_id')->references('id')->on('subcategories')->onDelete('set null')->onUpdate('cascade');
         });
     }
 

@@ -41,10 +41,12 @@
                     {{ $event->title}}
                 </div>
                 <div class="panel-footer">
-                    <p><b>Created at</b> {{date("M j, Y h:ia", strtotime($event->created_at)) }}</p>
-                    <p><b>Updated at</b> {{ date("M j, Y h:ia", strtotime($event->updated_at)) }} </p>
+                    <p><b>Place:</b> {{ $event->place->name }}</p>
                     <p><b>slug</b> {{ $event->slug }}</p>
                     <p><b>URL img</b> {{ $event->imgURL }}</p>
+                    <hr class="in_card">
+                    <p><b>Created at</b> {{date("M j, Y h:ia", strtotime($event->created_at)) }}</p>
+                    <p><b>Updated at</b> {{ date("M j, Y h:ia", strtotime($event->updated_at)) }} </p>
                     <p><a href="{{ route('events.edit', $event->id) }}" class="btn btn-sm btn-block btn-default">Edit</a></p>
                     <form action="{{ route('events.destroy', $event->id)}}" method="POST">
                       {{ csrf_field() }}

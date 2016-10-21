@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Event;
+use App\Place;
 use Illuminate\Support\Facades\Session;
 use App\Http\Events\Events\EventFactory;
 
@@ -37,7 +38,12 @@ class EventsController extends Controller
      */
     public function create()
     {
-        return view('events.create');
+        $places = Place::all();
+        $pls = array();
+        foreach ($places as $place) {
+            $pls[$place->id] = $place->name;
+        }
+        return view('events.create', ['places' => $pls]);
     }
 
     /**
@@ -66,6 +72,8 @@ class EventsController extends Controller
         $event->description = $request->description;
         $event->specialOffers = $request->specialOffers;
         $event->eventDateTime = $request->eventDateTime;
+
+        $event->place()->associate($request->place_id); 
 
         $event->save();
 
@@ -99,7 +107,13 @@ class EventsController extends Controller
     {
         $event = Event::find($id);
 
-        return view('events.edit', compact('event'));
+        $places = Place::all();
+        $pls = array();
+        foreach ($places as $place) {
+            $pls[$place->id] = $place->name;
+        }
+
+        return view('events.edit', ['event' => $event, 'places' => $pls]);
     }
 
     /**
@@ -140,6 +154,8 @@ class EventsController extends Controller
         $event->description = $request->input('description');
         $event->specialOffers = $request->input('specialOffers');
         $event->eventDateTime = $request->input('eventDateTime');
+
+        $event->place()->associate($request->place_id); 
 
         $event->save();
 

@@ -80,7 +80,7 @@ class PlacesController extends Controller
 
         $place->subcategory()->associate($request->subcategory_id); 
 
-        $subcategory->save(); 
+        $place->save(); 
 
         Session::flash('success', 'Place was created successfuly!');
 
@@ -98,7 +98,10 @@ class PlacesController extends Controller
      */
     public function show($id)
     {
-        //
+        $place = Place::find($id);
+        $subcategory =Subcategory::find($place->subcategory_id);
+
+        return view('places.single', ['place' => $place, 'subcategory' => $subcategory]);
     }
 
     /**
@@ -109,7 +112,15 @@ class PlacesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $place = Place::find($id);
+        $subcategories = Subcategory::all();
+
+        $subs = array();
+        foreach ($subcategories as $subcategory) {
+            $subs[$subcategory->id] = $subcategory->name;
+        }
+
+        return view('places.edit', ['subcategories' => $subs, 'place' => $place]);
     }
 
     /**
@@ -121,7 +132,56 @@ class PlacesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $place = Place::find($id);
+
+        if ($request->input('slug') == $place->slug) {
+        
+             $this->validate($request, [
+                'name' => 'required|max:50',
+                'imgURL' => 'required|max:20',
+                'videoURL' => 'max:20',
+                'type' => 'required|max:100',
+                'work_hours' => 'required',
+                'description' => 'required|min:5|max:1000',
+                'fitures' => 'required|min:5|max:200',
+                'everage_price' => 'required|numeric',
+                'address' => 'required|min:5|max:500',
+            ]);
+        }
+        else {
+            $this->validate($request, [
+            'name' => 'required|max:50',
+            'slug' => 'required|alpha_dash|min:5|max:255|unique:places,slug',
+            'imgURL' => 'required|max:20',
+            'videoURL' => 'max:20',
+            'type' => 'required|max:100',
+            'work_hours' => 'required',
+            'description' => 'required|min:5|max:1000',
+            'fitures' => 'required|min:5|max:200',
+            'everage_price' => 'required|numeric',
+            'address' => 'required|min:5|max:500',
+        ]);
+        }
+
+        $place->name = $request->input('name');  
+        $place->slug = $request->input('slug');  
+        $place->imgURL = $request->input('imgURL');  
+        $place->videoURL = $request->input('videoURL');  
+        $place->type = $request->input('type');  
+        $place->work_hours = $request->input('work_hours');        
+        $place->description = $request->input('description');  
+        $place->fitures = $request->input('fitures');  
+        $place->address = $request->input('address'); 
+        $place->everage_price = $request->input('everage_price'); 
+
+        $place->subcategory()->associate($request->subcategory_id); 
+
+        $place->save(); 
+
+        Session::flash('success', 'Place was Updated successfuly!');
+
+        //redirect to another page
+        return redirect()->route('places.show', $place->id);
     }
 
     /**
@@ -132,6 +192,12 @@ class PlacesController extends Controller
      */
     public function destroy($id)
     {
-        //
+       $place = Place::find($id);
+       $place->delete();
+
+       Session::flash('success', 'Your Place was deleted succesfully!');
+
+       return redirect()->route('places.index');
+
     }
 }
