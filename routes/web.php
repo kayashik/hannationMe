@@ -16,6 +16,8 @@ Auth::routes();
 
 Route::get('/', ['as' => 'pages.home', 'uses' => 'PageController@home']);
 Route::get('pages', ['as' => 'pages.index', 'uses' => 'PageController@index']);
+Route::get('pages/{subcategory}', ['as' => 'pages.placeList', 'uses' => 'PageController@placesList']);
+
 
 Route::resource('events', 'EventsController');
 
@@ -24,3 +26,5 @@ Route::resource('categories', 'CategoryController', ['except' => ['create', 'sho
 Route::resource('subcategories', 'SubcategoryController', ['except' => ['create', 'show']]);
 
 Route::resource('places', 'PlacesController');
+
+Route::resource('events2', 'EventsController', array('only' => array('index')));

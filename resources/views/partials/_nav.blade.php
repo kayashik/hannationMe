@@ -20,7 +20,7 @@
                 <!-- Left Side Of Navbar -->
                  @if (!Auth::guest())
                 <ul class="nav navbar-nav nav-admin-hannation">
-                   <li><a href="{{ route('pages.index') }}">Places</a></li>
+                     <li><a href="{{ route('pages.index') }}">Place</a></li>
                     <li><a href="#">Events</a></li>
                 </ul>
                 @endif

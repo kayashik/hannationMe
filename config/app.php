@@ -181,6 +181,9 @@ return [
 
         Collective\Html\HtmlServiceProvider::class,
 
+        // Dingo Laravel Srvice Provider
+       // Dingo\Api\Provider\LaravelServiceProvider::class,
+
     ],
 
     /*
